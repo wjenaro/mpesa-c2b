@@ -24,7 +24,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/register', registerRoutes);
-app.use('/api/confirmation', mpesaRoutes);
+app.use('/api/c2b', mpesaRoutes);  // Updated path to match new URLs
 
 // Basic health check endpoint
 app.get('/health', (req, res) => {
