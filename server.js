@@ -1,15 +1,15 @@
 const express = require('express');
- const bodyParser = require('body-parser');
- const mpesaRoutes = require('./routes/mpesa');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const registerRoutes = require('./routes/register');
+const mpesaRoutes = require('./routes/mpesa');
+
+dotenv.config();
 
 const app = express();
-app.use(bodyParser.json());
-app.use('/api/mpesa', mpesaRoutes);
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('M-Pesa C2B Sandbox App Running');
-});
+app.use('/api/register', registerRoutes);
+app.use('/api/confirmation', mpesaRoutes);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

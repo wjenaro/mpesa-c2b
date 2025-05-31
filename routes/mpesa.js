@@ -1,9 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const { validation, confirmation, registerUrls } = require('../controllers/mpesaController');
 
-router.post('/validation', validation);
-router.post('/confirmation', confirmation);
-router.get('/register-urls', registerUrls);
+router.post('/validation', (req, res) => {
+  console.log('Validation Request:', req.body);
+
+  // Accept all for testing
+  res.json({
+    ResultCode: '0',
+    ResultDesc: 'Accepted',
+  });
+});
+
+router.post('/confirmation', (req, res) => {
+  console.log('Confirmation Received:', req.body);
+
+  res.json({
+    ResultCode: '0',
+    ResultDesc: 'Success',
+  });
+});
 
 module.exports = router;
